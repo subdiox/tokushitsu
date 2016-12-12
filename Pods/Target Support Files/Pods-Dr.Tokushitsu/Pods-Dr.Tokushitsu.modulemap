@@ -1,0 +1,6 @@
+framework module Pods_Dr_Tokushitsu {
+  umbrella header "Pods-Dr.Tokushitsu-umbrella.h"
+
+  export *
+  module * { export * }
+}

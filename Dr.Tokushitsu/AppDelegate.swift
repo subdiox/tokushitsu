@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Dr.Tokushitsu
 //
-//  Created by yuta on 2016/11/01.
-//  Copyright © 2016年 com.godcoderx. All rights reserved.
+//  Created by Yuta Ooka on 2016/11/01.
+//  Copyright © 2016年 Yuta Ooka. All rights reserved.
 //
 
 import UIKit

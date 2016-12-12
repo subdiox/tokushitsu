@@ -1,0 +1,12 @@
+
+/* Class = "UINavigationItem"; title = "All Tokushitsu"; ObjectID = "5l0-gT-qnT"; */
+"5l0-gT-qnT.title" = "All Tokushitsu";
+
+/* Class = "UINavigationItem"; title = "Favorite Tokushitsu"; ObjectID = "CtO-bU-oL4"; */
+"CtO-bU-oL4.title" = "Favorite";
+
+/* Class = "UITabBarItem"; title = "All"; ObjectID = "IcJ-Sm-mBq"; */
+"IcJ-Sm-mBq.title" = "All";
+
+/* Class = "UITabBarItem"; title = "Favorite"; ObjectID = "zga-er-yz2"; */
+"zga-er-yz2.title" = "Favorite";

@@ -1,0 +1,15 @@
+PODS:
+  - M13PDFKit (1.0.2):
+    - TTOpenInAppActivity
+  - TTOpenInAppActivity (1.0)
+
+DEPENDENCIES:
+  - M13PDFKit (= 1.0.2)
+
+SPEC CHECKSUMS:
+  M13PDFKit: bc121a55ccb8ddfcf3982f1a5a8592b9f492cd73
+  TTOpenInAppActivity: c2218fe419d03ddd4ffb1f07d52d66e0d213d0d4
+
+PODFILE CHECKSUM: 14a1491a7ff3106474460b4502a7d9a7bd92bcd0
+
+COCOAPODS: 1.1.1
