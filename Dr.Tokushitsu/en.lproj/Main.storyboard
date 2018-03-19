@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--All-->
+        <scene sceneID="Ug6-VB-1HN">
+            <objects>
+                <tableViewController id="stg-5I-kVJ" customClass="AllViewController" customModule="Dr_Tokushitsu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="HYi-4s-pPc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Enter Tokushitsu Name" id="7Q8-HA-3xZ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllCell" id="HFs-2G-RbQ">
+                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HFs-2G-RbQ" id="aOy-TR-uEK">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="GI6-pV-xYm" kind="show" identifier="showDetail" id="lGj-1G-9XX"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="stg-5I-kVJ" id="Qgb-wx-H0u"/>
+                            <outlet property="delegate" destination="stg-5I-kVJ" id="HXi-rQ-PxK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="All" id="5l0-gT-qnT"/>
+                    <connections>
+                        <outlet property="searchBar" destination="7Q8-HA-3xZ" id="NP6-hf-rvL"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cFe-C3-cpH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="630" y="-410"/>
+        </scene>
+        <!--BasicPDF Viewer-->
+        <scene sceneID="PA1-bu-gaD">
+            <objects>
+                <viewController id="GI6-pV-xYm" customClass="PDFKBasicPDFViewer" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IET-IB-tmK"/>
+                        <viewControllerLayoutGuide type="bottom" id="L7U-vU-kgR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OHT-6A-8Bw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6WS-XX-jWq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1329" y="-410"/>
+        </scene>
+        <!--All-->
+        <scene sceneID="00z-3W-V7Y">
+            <objects>
+                <navigationController id="C39-rJ-6eo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="All" image="first" id="IcJ-Sm-mBq"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AUU-As-LFe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="stg-5I-kVJ" kind="relationship" relationship="rootViewController" id="7Cm-gF-R4t"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hC2-3i-baU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23" y="-409"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="C39-rJ-6eo" kind="relationship" relationship="viewControllers" id="byc-7j-0bI"/>
+                        <segue destination="hk1-vd-BK2" kind="relationship" relationship="viewControllers" id="cd7-tG-ga2"/>
+                        <segue destination="RYp-pI-QAr" kind="relationship" relationship="viewControllers" id="hj8-Dc-rgf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-833" y="-90"/>
+        </scene>
+        <!--Favorite-->
+        <scene sceneID="fz2-5h-rbe">
+            <objects>
+                <tableViewController id="Hzx-ey-6Hf" customClass="FavoriteViewController" customModule="Dr_Tokushitsu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="fv4-jc-pUh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" id="X5z-qK-Hyv">
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X5z-qK-Hyv" id="cty-wQ-UN5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Ysf-6P-r04" kind="show" identifier="showDetail" id="hmw-mA-Dal"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Hzx-ey-6Hf" id="K93-5Z-GUJ"/>
+                            <outlet property="delegate" destination="Hzx-ey-6Hf" id="d2p-2p-cam"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favorite" id="CtO-bU-oL4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="16T-ST-92l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="630" y="250"/>
+        </scene>
+        <!--BasicPDF Viewer-->
+        <scene sceneID="qyI-Op-GIW">
+            <objects>
+                <viewController id="Ysf-6P-r04" customClass="PDFKBasicPDFViewer" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KqZ-I3-DRs"/>
+                        <viewControllerLayoutGuide type="bottom" id="J9z-d2-Zfc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iy4-zz-FQO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PUS-zS-Eri" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1329" y="250"/>
+        </scene>
+        <!--Favorite-->
+        <scene sceneID="LqK-FN-Zd5">
+            <objects>
+                <navigationController id="hk1-vd-BK2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorite" image="second" id="zga-er-yz2"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wC4-F7-YSg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Hzx-ey-6Hf" kind="relationship" relationship="rootViewController" id="7ws-5q-bbH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p3N-y3-Wld" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23" y="250"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="1OD-kU-s8l">
+            <objects>
+                <tableViewController id="WSQ-mJ-pwZ" customClass="SettingsViewController" customModule="Dr_Tokushitsu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="AB7-uG-eVd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="IGX-SS-05V">
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IGX-SS-05V" id="S4r-T9-W20">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Ic4-qE-cE4" kind="show" identifier="showInfo" id="xOz-in-YCt"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="WSQ-mJ-pwZ" id="FFA-E1-o2g"/>
+                            <outlet property="delegate" destination="WSQ-mJ-pwZ" id="nfz-4K-5C5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="0s9-rA-1nT"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JGt-2z-995" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="630" y="921"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="d3o-YD-nVJ">
+            <objects>
+                <navigationController id="RYp-pI-QAr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="2" title="Settings" image="services.png" selectedImage="services.png" id="oYa-jj-6tB"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ssm-wQ-JOi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WSQ-mJ-pwZ" kind="relationship" relationship="rootViewController" id="lio-ns-zJR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IuC-0z-nHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23" y="922"/>
+        </scene>
+        <!--BasicPDF Viewer-->
+        <scene sceneID="PEu-c0-jhX">
+            <objects>
+                <viewController id="Ic4-qE-cE4" customClass="PDFKBasicPDFViewer" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BTT-At-evs"/>
+                        <viewControllerLayoutGuide type="bottom" id="fph-Y4-Q1E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V9Z-I3-mzy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="faH-Pt-hKL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1329" y="922"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
+        <image name="services.png" width="20" height="20"/>
+    </resources>
+</document>

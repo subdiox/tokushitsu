@@ -11,25 +11,14 @@ import M13PDFKit
 
 class FavoriteViewController: UITableViewController {
     
-    //@IBOutlet var tableView: UITableView!
-    
     var favList: [[String]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerUserDefaults()
+        tableView.dataSource = self
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.backBarButtonItem = UIBarButtonItem(title:NSLocalizedString("Back", comment: "Back button of the navigation bar"),style: .plain, target: nil, action: nil)
-    }
-    
-    func tabDidSelect() {
         getUserDefaults()
-        tableView.reloadData()
-    }
-    
-    func registerUserDefaults() {
-        let userDefaults = UserDefaults.standard
-        userDefaults.register(defaults: ["favList": []])
     }
     
     func getUserDefaults() {
@@ -40,6 +29,7 @@ class FavoriteViewController: UITableViewController {
     func saveUserDefaults() {
         let userDefaults = UserDefaults.standard
         userDefaults.set(favList, forKey: "favList")
+        userDefaults.synchronize()
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -61,16 +51,19 @@ class FavoriteViewController: UITableViewController {
         tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: UITableViewRowAnimation.fade)
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        getUserDefaults()
         return favList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "FavoriteCell")
-        if (favList.count > 0) {
-            cell.textLabel?.text = favList[indexPath.row][1]
-            cell.detailTextLabel?.text = favList[indexPath.row][0]
-        }
+        cell.textLabel?.text = favList[indexPath.row][2]
+        cell.detailTextLabel?.text = favList[indexPath.row][1]
         cell.detailTextLabel?.textColor = UIColor.gray
         return cell
     }
@@ -80,14 +73,28 @@ class FavoriteViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let path = "mhlw/" + (NSString(format: "%03d", tableView.indexPathForSelectedRow!.row + 1) as String) + ".pdf"
-        let viewer: PDFKBasicPDFViewer = segue.destination as! PDFKBasicPDFViewer
+        let path = "mhlw/" + favList[tableView.indexPathForSelectedRow!.row][0] + ".pdf"
+        let viewer: PDFViewController = segue.destination as! PDFViewController
+        viewer.title = favList[tableView.indexPathForSelectedRow!.row][2]
         let pdfPath = Bundle.main.path(forResource: path, ofType:nil)!
         let document = PDFKDocument(contentsOfFile: pdfPath, password: nil)
         viewer.loadDocument(document)
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
+        NSLog("source: %d, target: %d", fromIndexPath.row, toIndexPath.row)
+        let from: [String] = favList[fromIndexPath.row]
+        let to: [String] = favList[toIndexPath.row]
+        favList[fromIndexPath.row] = to
+        favList[toIndexPath.row] = from
+        saveUserDefaults()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
         if (tableView.indexPathForSelectedRow != nil) {
             tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true);
         }

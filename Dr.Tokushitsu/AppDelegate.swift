@@ -12,13 +12,42 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var didAgree: Bool = false
+    var key: String = "null"
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        registerUserDefaults()
+        getUserDefaults()
+        if didAgree {
+            if key == "null" {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let initialViewController = storyboard.instantiateViewController(withIdentifier: "RegisterStoryboard")
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            } else if key == "d260b83796537bb9b410b4146ca28a37cfa9b279bafc63d16f2ddbdf8715b9c4" {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let initialViewController = storyboard.instantiateViewController(withIdentifier: "MainStoryboard")
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            }
+        }
         return true
     }
 
+    func registerUserDefaults() {
+        let userDefaults = UserDefaults.standard
+        userDefaults.register(defaults: ["didAgree": false])
+        userDefaults.register(defaults: ["TokushitsuKey": "null"])
+    }
+    
+    func getUserDefaults() {
+        let userDefaults = UserDefaults.standard
+        didAgree = userDefaults.object(forKey: "didAgree") as! Bool
+        key = userDefaults.object(forKey: "TokushitsuKey") as! String
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

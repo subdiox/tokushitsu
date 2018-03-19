@@ -8,5 +8,6 @@ target 'Dr.Tokushitsu' do
   # Pods for Dr.Tokushitsu
 source 'https://github.com/CocoaPods/Specs.git'
 pod 'M13PDFKit', '1.0.2'
-
+pod 'Alamofire', '~> 4.4'
+pod 'SwiftyJSON'
 end

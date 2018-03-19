@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--All-->
+        <!--全特定疾患-->
         <scene sceneID="Ug6-VB-1HN">
             <objects>
                 <tableViewController id="stg-5I-kVJ" customClass="AllViewController" customModule="Dr_Tokushitsu" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,12 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="特定疾患名を入力" id="7Q8-HA-3xZ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllCell" id="HFs-2G-RbQ">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HFs-2G-RbQ" id="aOy-TR-uEK">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -34,7 +39,10 @@
                             <outlet property="delegate" destination="stg-5I-kVJ" id="HXi-rQ-PxK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All" id="5l0-gT-qnT"/>
+                    <navigationItem key="navigationItem" title="全特定疾患" id="5l0-gT-qnT"/>
+                    <connections>
+                        <outlet property="searchBar" destination="7Q8-HA-3xZ" id="NP6-hf-rvL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFe-C3-cpH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -58,11 +66,11 @@
             </objects>
             <point key="canvasLocation" x="1329" y="-410"/>
         </scene>
-        <!--All-->
+        <!--全特疾-->
         <scene sceneID="00z-3W-V7Y">
             <objects>
                 <navigationController id="C39-rJ-6eo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="All" image="first" id="IcJ-Sm-mBq"/>
+                    <tabBarItem key="tabBarItem" title="全特疾" image="first" id="IcJ-Sm-mBq"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AUU-As-LFe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -78,7 +86,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" customClass="TabBarController" customModule="Dr_Tokushitsu" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -88,13 +96,14 @@
                     <connections>
                         <segue destination="C39-rJ-6eo" kind="relationship" relationship="viewControllers" id="byc-7j-0bI"/>
                         <segue destination="hk1-vd-BK2" kind="relationship" relationship="viewControllers" id="cd7-tG-ga2"/>
+                        <segue destination="Pbt-VA-S4Q" kind="relationship" relationship="viewControllers" id="fYa-o3-nOI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-833" y="-90"/>
         </scene>
-        <!--Favorite-->
+        <!--お気に入り-->
         <scene sceneID="fz2-5h-rbe">
             <objects>
                 <tableViewController id="Hzx-ey-6Hf" customClass="FavoriteViewController" customModule="Dr_Tokushitsu" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,10 +113,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" id="X5z-qK-Hyv">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X5z-qK-Hyv" id="cty-wQ-UN5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -120,7 +129,7 @@
                             <outlet property="delegate" destination="Hzx-ey-6Hf" id="d2p-2p-cam"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorite" id="CtO-bU-oL4"/>
+                    <navigationItem key="navigationItem" title="お気に入り" id="CtO-bU-oL4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16T-ST-92l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,13 +151,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUS-zS-Eri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1342" y="252"/>
+            <point key="canvasLocation" x="1329" y="250"/>
         </scene>
-        <!--Favorite-->
+        <!--お気に入り-->
         <scene sceneID="LqK-FN-Zd5">
             <objects>
                 <navigationController id="hk1-vd-BK2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorite" image="second" id="zga-er-yz2"/>
+                    <tabBarItem key="tabBarItem" title="お気に入り" image="second" id="zga-er-yz2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wC4-F7-YSg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -161,9 +170,77 @@
             </objects>
             <point key="canvasLocation" x="-23" y="250"/>
         </scene>
+        <!--設定-->
+        <scene sceneID="G34-yB-DCD">
+            <objects>
+                <tableViewController id="gnr-TO-qIN" customClass="SettingsViewController" customModule="Dr_Tokushitsu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="NfX-J9-c1q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="9E5-Yg-sIX">
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9E5-Yg-sIX" id="WUx-Tv-Y4u">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="dPy-rz-p4L" kind="show" identifier="showInfo" id="qxL-LA-2L3"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gnr-TO-qIN" id="1Nj-Ed-4eq"/>
+                            <outlet property="delegate" destination="gnr-TO-qIN" id="TrG-Ms-cMO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="設定" id="zif-t0-tXK"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gXn-R6-z3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="630" y="923"/>
+        </scene>
+        <!--設定-->
+        <scene sceneID="qa4-UT-Kan">
+            <objects>
+                <navigationController id="Pbt-VA-S4Q" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="2" title="設定" image="services.png" selectedImage="services.png" id="mEk-HY-xcY"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9dy-h1-cL9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="gnr-TO-qIN" kind="relationship" relationship="rootViewController" id="my8-eP-fF2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N42-Wz-Zgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23" y="923"/>
+        </scene>
+        <!--BasicPDF Viewer-->
+        <scene sceneID="bUb-Yr-eRL">
+            <objects>
+                <viewController id="dPy-rz-p4L" customClass="PDFKBasicPDFViewer" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7zL-MO-BSt"/>
+                        <viewControllerLayoutGuide type="bottom" id="yMz-SX-9GL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nR4-ls-gY9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SQo-cH-0HK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1329" y="922"/>
+        </scene>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
+        <image name="services.png" width="20" height="20"/>
     </resources>
 </document>

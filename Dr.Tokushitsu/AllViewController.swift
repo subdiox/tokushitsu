@@ -9,18 +9,20 @@
 import UIKit
 import M13PDFKit
 
-class AllViewController : UITableViewController {
+class AllViewController : UITableViewController, UISearchBarDelegate {
     
-    //@IBOutlet var tableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
     
     var list: [[String]] = []
+    var searchResult: [[String]] = []
     var favList: [[String]] = []
-    var viewer: PDFKBasicPDFViewer? = nil
     var lastIndexPath: IndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerUserDefaults()
+        searchBar.delegate = self
+        searchBar.enablesReturnKeyAutomatically = false
         navigationItem.backBarButtonItem = UIBarButtonItem(title:NSLocalizedString("Back", comment: "Back button of the navigation bar"),style: .plain, target: nil, action: nil)
         getUserDefaults()
         if let csvPath = Bundle.main.path(forResource: "list", ofType: "csv") {
@@ -29,20 +31,36 @@ class AllViewController : UITableViewController {
                 self.list.append(line.components(separatedBy: ","))
             }
         }
+        searchResult = list
     }
     
-    func tabDidSelect() {
+    func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
+        return CGRect(x: x, y: y, width: width, height: height)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        searchResult.removeAll()
+        if(searchBar.text == "") {
+            searchResult = list
+        } else {
+            for data in list {
+                if data[2].contains(searchBar.text!) {
+                    searchResult.append(data)
+                }
+            }
+        }
         tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return searchResult.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "AllCell")
-        cell.textLabel?.text = list[indexPath.row][1]
-        cell.detailTextLabel?.text = list[indexPath.row][0]
+        cell.textLabel?.text = searchResult[indexPath.row][2]
+        cell.detailTextLabel?.text = searchResult[indexPath.row][1]
         cell.detailTextLabel?.textColor = UIColor.gray
         return cell
     }
@@ -53,18 +71,30 @@ class AllViewController : UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let path = "mhlw/" + (NSString(format: "%03d", tableView.indexPathForSelectedRow!.row + 1) as String) + ".pdf"
-        let viewer: PDFKBasicPDFViewer = segue.destination as! PDFKBasicPDFViewer
-        viewer.title = list[tableView.indexPathForSelectedRow!.row][1]
-        let button = UIButton(type: UIButtonType.custom) as UIButton
-        button.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 30, height: 30))
-        button.setImage(UIImage(named: "star.png"), for: UIControlState.normal)
-        button.setBackgroundImage(UIImage(named: "starfilled.png"), for: UIControlState.selected)
-        button.addTarget(self, action: #selector(self.favorite), for: UIControlEvents.touchUpInside)
-        viewer.navigationItem.setRightBarButton(UIBarButtonItem(customView:button), animated: true)
-        let pdfPath = Bundle.main.path(forResource: path, ofType:nil)!
-        let document = PDFKDocument(contentsOfFile: pdfPath, password: nil)
-        viewer.loadDocument(document)
+        if segue.identifier == "showDetail" {
+            getUserDefaults()
+            let path = "mhlw/" + searchResult[tableView.indexPathForSelectedRow!.row][0] + ".pdf"
+            let viewer: PDFViewController = segue.destination as! PDFViewController
+            viewer.title = searchResult[tableView.indexPathForSelectedRow!.row][2]
+            let button = UIButton(type: UIButtonType.custom) as UIButton
+            button.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 30, height: 30))
+            button.setImage(UIImage(named: "star.png"), for: UIControlState.normal)
+            button.setBackgroundImage(UIImage(named: "starfilled.png"), for: UIControlState.selected)
+            button.imageView?.contentMode = .scaleAspectFill
+            button.addTarget(self, action: #selector(self.favorite), for: UIControlEvents.touchUpInside)
+            if let indexPath = lastIndexPath {
+                let i = favList.index { $0 == searchResult[indexPath.row] }
+                if (i == nil) {
+                    button.isSelected = false
+                } else {
+                    button.isSelected = true
+                }
+            }
+            viewer.navigationItem.setRightBarButton(UIBarButtonItem(customView:button), animated: true)
+            let pdfPath = Bundle.main.path(forResource: path, ofType:nil)!
+            let document = PDFKDocument(contentsOfFile: pdfPath, password: nil)
+            viewer.loadDocument(document)
+        }
     }
     
     func registerUserDefaults() {
@@ -80,20 +110,22 @@ class AllViewController : UITableViewController {
     func saveUserDefaults() {
         let userDefaults = UserDefaults.standard
         userDefaults.set(favList, forKey: "favList")
+        userDefaults.synchronize()
     }
     
     func favorite(sender: UIButton) {
+        getUserDefaults()
         if let indexPath = lastIndexPath {
-            let i = favList.index { $0 == list[indexPath.row] }
+            let i = favList.index { $0 == searchResult[indexPath.row] }
             if (i == nil) {
-                favList.append(list[lastIndexPath!.row])
+                favList.append(searchResult[lastIndexPath!.row])
                 sender.isSelected = true
             } else {
                 favList.remove(at:i!)
                 sender.isSelected = false
             }
-            saveUserDefaults()
         }
+        saveUserDefaults()
     }
     
     override func viewWillAppear(_ animated: Bool) {
